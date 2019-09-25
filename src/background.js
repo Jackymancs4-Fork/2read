@@ -64,9 +64,9 @@ async function pinLocally(hash) {
     req.send();
 }
 
-function handleClick() {
-    chrome.tabs.executeScript({ file: 'Readability.js' }, function () {
-        chrome.tabs.executeScript({ file: 'action.js' });
+function handleClick(tab) {
+    chrome.tabs.executeScript(tab.id, { file: 'Readability.js' }, function () {
+        chrome.tabs.executeScript(tab.id, { file: 'action.js' });
     });
 }
 
@@ -89,5 +89,16 @@ async function handleMessage(article) {
     gateways.forEach(gateway => fetch(`https://${gateway.domain}/ipfs/${hash}/`));
 }
 
-chrome.browserAction.onClicked.addListener(handleClick);
+browser.pageAction.onClicked.addListener(handleClick);
+
+function checkForValidUrl(tabId, changeInfo, tab) {
+    if(typeof tab != "undefined" && typeof tab != "null" ) {
+            // ... show the page action.
+            browser.pageAction.show(tabId);
+    }
+};
+
+// Listen for any changes to the URL of any tab.
+// Since Chrome does'nt support hide_match or show_match
+browser.tabs.onUpdated.addListener(checkForValidUrl);
 chrome.runtime.onMessage.addListener(handleMessage);

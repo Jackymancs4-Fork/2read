@@ -12,7 +12,7 @@
         "*://*/*",
         "bookmarks"
     ],
-    "browser_action": {
+    "page_action": {
         "default_icon": "icon.png",
         "default_title": "2read"
     },
