@@ -5,7 +5,12 @@
     "homepage_url": "https://2read.net/",
     "description": "Convert article in current tab to readable form and upload it to IPFS.",
     "icons": {
-        "48": "icon.png"
+        "16": "icon.svg",
+        "24": "icon.svg",
+        "32": "icon.svg",
+        "64": "icon.svg",
+        "128": "icon.svg",
+        "256": "icon.svg"
     },
     "permissions": [
         "activeTab",
@@ -13,7 +18,13 @@
         "bookmarks"
     ],
     "browser_action": {
-        "default_icon": "icon.png",
+        "default_icon": {
+            "16": "icon.svg",
+            "19": "icon.svg",
+            "24": "icon.svg",
+            "32": "icon.svg",
+            "38": "icon.svg"
+        },
         "default_title": "2read"
     },
     "background": {
